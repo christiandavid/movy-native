@@ -1,25 +1,77 @@
-import { useTheme } from '@react-navigation/native';
 import React from 'react';
-import { Text, View } from 'react-native';
-import { Config } from 'react-native-config';
-import { useSelector } from 'react-redux';
+import { useTheme } from '@react-navigation/native';
+import { Text, View, Image, ImageBackground } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
+
 import { TextStyles } from '@/theme';
-import { getUser } from '@/selectors/UserSelectors';
 import { styles } from '@/screens/Home/Home.styles';
-import { strings } from '@/localization';
+import { movyIcon, addIcon, playIcon, infoIcon } from '@/assets';
+import poster from '@/assets/mockImages/mockFeaturedPoster.png';
 
 export function Home() {
   const { colors } = useTheme();
-  const user = useSelector(getUser);
 
   return (
     <View style={styles.container}>
-      <Text style={[TextStyles.title, { color: colors.text }]}>
-        {strings.home.message} {user?.username}
-      </Text>
-      <Text style={[TextStyles.text, { color: colors.text }]}>
-        {strings.home.variant} {Config.BUILD_VARIANT}
-      </Text>
+      <ImageBackground source={poster} style={styles.backgroundImage}>
+        <LinearGradient
+          colors={[
+            '#00000000',
+            '#00000033',
+            `${colors.base}ff`,
+            `${colors.base}`,
+          ]}
+          style={styles.linearGradient}
+        >
+          <Image
+            style={styles.logo}
+            source={movyIcon}
+            accessibilityIgnoresInvertColors
+          />
+          <View style={styles.categories}>
+            <Text style={[TextStyles.text, { color: colors.text }]}>Kids</Text>
+            <Text style={[TextStyles.text, { color: colors.text }]}>
+              Fantasy Movie
+            </Text>
+            <Text style={[TextStyles.text, { color: colors.text }]}>
+              Action
+            </Text>
+          </View>
+          <Text style={[TextStyles.title, styles.tag]}>MOVY ORIGINAL</Text>
+          <View style={styles.icons}>
+            <View style={styles.icon}>
+              <Image
+                source={addIcon}
+                accessibilityIgnoresInvertColors
+                style={{ tintColor: colors.invertedBase }}
+              />
+              <Text style={[TextStyles.text, { color: colors.text }]}>
+                My list
+              </Text>
+            </View>
+            <View style={styles.icon}>
+              <Image
+                source={playIcon}
+                accessibilityIgnoresInvertColors
+                style={{ tintColor: colors.invertedBase }}
+              />
+              <Text style={[TextStyles.text, { color: colors.text }]}>
+                Play
+              </Text>
+            </View>
+            <View style={styles.icon}>
+              <Image
+                source={infoIcon}
+                accessibilityIgnoresInvertColors
+                style={{ tintColor: colors.invertedBase }}
+              />
+              <Text style={[TextStyles.text, { color: colors.text }]}>
+                Info
+              </Text>
+            </View>
+          </View>
+        </LinearGradient>
+      </ImageBackground>
     </View>
   );
 }
