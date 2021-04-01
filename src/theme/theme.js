@@ -12,7 +12,7 @@ export const theme = {
       border: '#212121',
       activeTab: '#1976D2',
       inactiveTab: '#757575',
-      base: '#ffffff',
+      base: '#F0F0F0',
       invertedBase: '#000000',
     },
   },

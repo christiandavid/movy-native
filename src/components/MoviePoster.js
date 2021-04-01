@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 1,
   },
   movieImage: {
-    width: 90,
+    width: 95,
     height: 180,
   },
   originalView: {

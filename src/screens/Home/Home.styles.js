@@ -1,8 +1,9 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, StatusBar } from 'react-native';
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingTop: StatusBar.currentHeight,
   },
   backgroundImage: {
     flex: 1,
@@ -43,5 +44,8 @@ export const styles = StyleSheet.create({
     width: 260,
     borderRadius: 5,
     overflow: 'hidden',
+  },
+  lists: {
+    marginTop: 35,
   },
 });
