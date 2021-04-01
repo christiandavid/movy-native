@@ -2,7 +2,11 @@ export const en = {
   common: {
     loading: 'Loading',
     connectionError: 'Connection error',
+    myList: 'My List',
     trendingNow: 'Trending Now',
+    recentlyAdded: 'Recently Added',
+    play: 'Play',
+    info: 'Info',
   },
   home: {
     header: 'Home',
