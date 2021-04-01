@@ -24,7 +24,7 @@ export const en = {
   },
   components: {
     horizontalList: {
-      listEmpty: 'This list is empty',
+      listEmpty: 'Esta lista está vacía',
     },
     moviePoster: {
       movyOriginal: 'MOVY ORIGINAL',
