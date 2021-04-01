@@ -122,7 +122,7 @@ export function Home() {
                   style={{ tintColor: colors.invertedBase }}
                 />
                 <Text style={[TextStyles.text, { color: colors.text }]}>
-                  {strings.common.Info}
+                  {strings.common.info}
                 </Text>
               </View>
             </View>
