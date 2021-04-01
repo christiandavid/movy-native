@@ -8,8 +8,15 @@ import { MoviePoster } from '@/components';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    alignSelf: 'stretch',
   },
-  listEmptyView: {},
+  list: {
+    flexGrow: 1,
+  },
+  listEmptyView: {
+    flex: 1,
+    alignItems: 'center',
+  },
   title: {
     fontSize: 20,
     paddingLeft: 15,
@@ -20,7 +27,9 @@ const styles = StyleSheet.create({
 
 const ListEmpty = () => (
   <View style={styles.listEmptyView}>
-    <Text>{strings.components.horizontalList.listEmpty}</Text>
+    <Text style={styles.listEmptyText}>
+      {strings.components.horizontalList.listEmpty}
+    </Text>
   </View>
 );
 
@@ -37,6 +46,7 @@ export function HorizontalList({ title, posters }) {
     <View style={styles.container}>
       <Text style={[styles.title, { color: colors.text }]}>{title}</Text>
       <VirtualizedList
+        contentContainerStyle={styles.list}
         data={posters}
         initialNumToRender={5}
         renderItem={({ item }) => <MoviePoster imageSrc={item.image} />}
