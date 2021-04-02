@@ -1,18 +1,20 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
+
+import { theme } from '@/theme';
 import { strings } from '@/localization';
 
 const styles = StyleSheet.create({
   movie: {
-    height: 180,
+    height: 170,
     justifyContent: 'center',
     marginVertical: 8,
     marginHorizontal: 1,
   },
   movieImage: {
-    width: 95,
-    height: 180,
+    width: theme.posterWidth,
+    height: 190,
   },
   originalView: {
     backgroundColor: '#0578FF',

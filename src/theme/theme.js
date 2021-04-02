@@ -31,4 +31,5 @@ export const theme = {
       invertedBase: '#ffffff',
     },
   },
+  posterWidth: 100,
 };

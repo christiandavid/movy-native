@@ -2,8 +2,8 @@ import { useTheme } from '@react-navigation/native';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { StyleSheet, View, Text, VirtualizedList } from 'react-native';
-import { strings } from '@/localization';
-import { MoviePoster } from '@/components';
+
+import { ListEmpty, MoviePoster } from '@/components';
 
 const styles = StyleSheet.create({
   container: {
@@ -13,10 +13,6 @@ const styles = StyleSheet.create({
   list: {
     flexGrow: 1,
   },
-  listEmptyView: {
-    flex: 1,
-    alignItems: 'center',
-  },
   title: {
     fontSize: 20,
     paddingLeft: 15,
@@ -25,35 +21,28 @@ const styles = StyleSheet.create({
   },
 });
 
-const ListEmpty = () => (
-  <View style={styles.listEmptyView}>
-    <Text style={styles.listEmptyText}>
-      {strings.components.horizontalList.listEmpty}
-    </Text>
-  </View>
-);
+const getItem = (data, index) => ({
+  id: data[index].id,
+  image: data[index].image,
+});
+const getItemCount = data => data.length;
+const keyExtractor = item => item.id;
 
 export function HorizontalList({ title, posters }) {
   const { colors } = useTheme();
-
-  const getItem = (data, index) => ({
-    id: data[index].id,
-    image: data[index].image,
-  });
-  const getItemCount = data => data.length;
 
   return (
     <View style={styles.container}>
       <Text style={[styles.title, { color: colors.text }]}>{title}</Text>
       <VirtualizedList
+        horizontal
         contentContainerStyle={styles.list}
         data={posters}
         initialNumToRender={5}
         renderItem={({ item }) => <MoviePoster imageSrc={item.image} />}
-        keyExtractor={item => item.id}
+        keyExtractor={keyExtractor}
         getItemCount={getItemCount}
         getItem={getItem}
-        horizontal={true}
         ListEmptyComponent={ListEmpty}
       />
     </View>
