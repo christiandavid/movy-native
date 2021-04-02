@@ -4,6 +4,7 @@ import React from 'react';
 import { TabBarIcon } from '@/components';
 import { NAVIGATION } from '@/constants';
 import { HomeNavigator } from '@/navigation/HomeNavigator';
+import { MyListNavigator } from '@/navigation/MyListNavigator';
 import { ProfileNavigator } from '@/navigation/ProfileNavigator';
 
 const Tab = createBottomTabNavigator();
@@ -21,9 +22,11 @@ export function AppNavigator() {
       tabBarOptions={{
         activeTintColor: colors.activeTab,
         inactiveTintColor: colors.inactiveTab,
+        showLabel: false,
       }}
     >
       <Tab.Screen name={NAVIGATION.home} component={HomeNavigator} />
+      <Tab.Screen name={NAVIGATION.myList} component={MyListNavigator} />
       <Tab.Screen name={NAVIGATION.profile} component={ProfileNavigator} />
     </Tab.Navigator>
   );
