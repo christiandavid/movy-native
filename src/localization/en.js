@@ -34,4 +34,7 @@ export const en = {
       movyOriginal: 'MOVY ORIGINAL',
     },
   },
+  featuredMovie: {
+    invalidRequest: "Something bad happened and I can't get the information",
+  },
 };
