@@ -2,10 +2,17 @@ import axios from 'axios';
 import { Config } from 'react-native-config';
 import { strings } from '@/localization';
 
+// TODO: Get device language
+const LANGUAGE = 'en-US';
+
 const client = axios.create({
   baseURL: Config.API_BASE_URL,
   headers: {
     'Content-Type': 'application/json',
+  },
+  params: {
+    api_key: Config.API_MOVIE_DB_KEY,
+    language: LANGUAGE,
   },
 });
 
