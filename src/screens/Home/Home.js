@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useTheme } from '@react-navigation/native';
 import {
   Image,
@@ -9,12 +9,18 @@ import {
   View,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
+
+import { IMAGE_PATH } from '@/constants';
+import { fetchFeaturedMovie, TYPES } from '@/actions/FeaturedMovieActions';
 import { TextStyles } from '@/theme';
 import { strings } from '@/localization';
-import { HorizontalList } from '@/components';
+import { HorizontalList, Spinner } from '@/components';
 import { styles } from '@/screens/Home/Home.styles';
+import { getFeaturedMovie } from '@/selectors/FeaturedMovieSelectors';
+import { errorsSelector } from '@/selectors/ErrorSelectors';
+import { isLoadingSelector } from '@/selectors/StatusSelectors';
 import { movyIcon, addIcon, playIcon, infoIcon } from '@/assets';
-import poster from '@/assets/mockImages/mockFeaturedPoster.png';
 
 const posters = [
   {
@@ -61,11 +67,33 @@ const posters = [
 
 export function Home() {
   const { colors } = useTheme();
+  const dispatch = useDispatch();
+
+  const featuredMovie = useSelector(getFeaturedMovie, shallowEqual);
+
+  const isLoading = useSelector(state =>
+    isLoadingSelector([TYPES.FEATURED_MOVIE], state)
+  );
+
+  const errors = useSelector(
+    state => errorsSelector([TYPES.FEATURED_MOVIE], state),
+    shallowEqual
+  );
+
+  useEffect(() => {
+    dispatch(fetchFeaturedMovie());
+  }, [dispatch]);
+
+  if (isLoading) {
+    return <Spinner />;
+  }
+
+  const posterImage = { uri: `${IMAGE_PATH}${featuredMovie.posterPath}` };
 
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scrollView}>
-        <ImageBackground source={poster} style={styles.backgroundImage}>
+        <ImageBackground source={posterImage} style={styles.backgroundImage}>
           <LinearGradient
             colors={[
               '#00000000',
@@ -81,15 +109,14 @@ export function Home() {
               accessibilityIgnoresInvertColors
             />
             <View style={styles.categories}>
-              <Text style={[TextStyles.text, { color: colors.text }]}>
-                Kids
-              </Text>
-              <Text style={[TextStyles.text, { color: colors.text }]}>
-                Fantasy Movie
-              </Text>
-              <Text style={[TextStyles.text, { color: colors.text }]}>
-                Action
-              </Text>
+              {featuredMovie.genres.map(genre => (
+                <Text
+                  key={genre}
+                  style={[TextStyles.text, { color: colors.text }]}
+                >
+                  {genre}
+                </Text>
+              ))}
             </View>
             <Text style={[TextStyles.title, styles.tag]}>
               {strings.components.moviePoster.movyOriginal}
