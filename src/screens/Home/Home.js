@@ -1,26 +1,10 @@
-import React, { useEffect } from 'react';
-import { useTheme } from '@react-navigation/native';
-import {
-  Image,
-  ImageBackground,
-  SafeAreaView,
-  ScrollView,
-  Text,
-  View,
-} from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
-import { shallowEqual, useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { SafeAreaView, ScrollView, View } from 'react-native';
 
-import { IMAGE_PATH } from '@/constants';
-import { fetchFeaturedMovie, TYPES } from '@/actions/FeaturedMovieActions';
-import { TextStyles } from '@/theme';
 import { strings } from '@/localization';
-import { HorizontalList, Spinner } from '@/components';
+import { HorizontalList } from '@/components';
 import { styles } from '@/screens/Home/Home.styles';
-import { getFeaturedMovie } from '@/selectors/FeaturedMovieSelectors';
-import { errorsSelector } from '@/selectors/ErrorSelectors';
-import { isLoadingSelector } from '@/selectors/StatusSelectors';
-import { movyIcon, addIcon, playIcon, infoIcon } from '@/assets';
+import { FeaturedMovie } from '@/screens/Home/FeaturedMovie';
 
 const posters = [
   {
@@ -66,95 +50,10 @@ const posters = [
 ];
 
 export function Home() {
-  const { colors } = useTheme();
-  const dispatch = useDispatch();
-
-  const featuredMovie = useSelector(getFeaturedMovie, shallowEqual);
-
-  const isLoading = useSelector(state =>
-    isLoadingSelector([TYPES.FEATURED_MOVIE], state)
-  );
-
-  const errors = useSelector(
-    state => errorsSelector([TYPES.FEATURED_MOVIE], state),
-    shallowEqual
-  );
-
-  useEffect(() => {
-    dispatch(fetchFeaturedMovie());
-  }, [dispatch]);
-
-  if (isLoading) {
-    return <Spinner />;
-  }
-
-  const posterImage = { uri: `${IMAGE_PATH}${featuredMovie.posterPath}` };
-
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView style={styles.scrollView}>
-        <ImageBackground source={posterImage} style={styles.backgroundImage}>
-          <LinearGradient
-            colors={[
-              '#00000000',
-              '#00000033',
-              `${colors.base}ff`,
-              `${colors.base}`,
-            ]}
-            style={styles.linearGradient}
-          >
-            <Image
-              style={styles.logo}
-              source={movyIcon}
-              accessibilityIgnoresInvertColors
-            />
-            <View style={styles.categories}>
-              {featuredMovie.genres.map(genre => (
-                <Text
-                  key={genre}
-                  style={[TextStyles.text, { color: colors.text }]}
-                >
-                  {genre}
-                </Text>
-              ))}
-            </View>
-            <Text style={[TextStyles.title, styles.tag]}>
-              {strings.components.moviePoster.movyOriginal}
-            </Text>
-            <View style={styles.icons}>
-              <View style={styles.icon}>
-                <Image
-                  source={addIcon}
-                  accessibilityIgnoresInvertColors
-                  style={{ tintColor: colors.invertedBase }}
-                />
-                <Text style={[TextStyles.text, { color: colors.text }]}>
-                  {strings.common.myList}
-                </Text>
-              </View>
-              <View style={styles.icon}>
-                <Image
-                  source={playIcon}
-                  accessibilityIgnoresInvertColors
-                  style={{ tintColor: colors.invertedBase }}
-                />
-                <Text style={[TextStyles.text, { color: colors.text }]}>
-                  {strings.common.play}
-                </Text>
-              </View>
-              <View style={styles.icon}>
-                <Image
-                  source={infoIcon}
-                  accessibilityIgnoresInvertColors
-                  style={{ tintColor: colors.invertedBase }}
-                />
-                <Text style={[TextStyles.text, { color: colors.text }]}>
-                  {strings.common.info}
-                </Text>
-              </View>
-            </View>
-          </LinearGradient>
-        </ImageBackground>
+      <ScrollView>
+        <FeaturedMovie />
         <View style={styles.lists}>
           <HorizontalList title={strings.common.myList} posters={posters} />
           <HorizontalList
