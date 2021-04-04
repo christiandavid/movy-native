@@ -20,6 +20,8 @@ export const featuredMovieReducer = (
         genres: payload.featuredMovie.genres,
         lastUpdate: Date.now(),
       };
+    case TYPES.CLEAR_STORE:
+      return { ...initialState };
     default:
       return state;
   }
