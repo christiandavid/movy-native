@@ -6,6 +6,8 @@ export const TYPES = {
   LOGIN_REQUEST: 'LOGIN_REQUEST',
   LOGIN_ERROR: 'LOGIN_ERROR',
   LOGIN_SUCCESS: 'LOGIN_SUCCESS',
+  LIST_ADD: 'LIST_ADD',
+  LIST_REMOVE: 'LIST_REMOVE',
 };
 
 const loginRequest = () => ({
@@ -28,6 +30,16 @@ const clearStore = () => ({
   payload: null,
 });
 
+const add = movie => ({
+  type: TYPES.LIST_ADD,
+  payload: { movie },
+});
+
+const remove = movie => ({
+  type: TYPES.LIST_REMOVE,
+  payload: { movie },
+});
+
 export const login = (username, password) => async dispatch => {
   dispatch(loginRequest());
   try {
@@ -44,4 +56,12 @@ export const logout = () => async dispatch => {
   } finally {
     dispatch(clearStore());
   }
+};
+
+export const addToList = movie => dispatch => {
+  dispatch(add(movie));
+};
+
+export const removeFromList = movie => dispatch => {
+  dispatch(remove(movie));
 };

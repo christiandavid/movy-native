@@ -6,14 +6,16 @@ import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 
 import { styles } from '@/screens/Home/FeaturedMovie/FeaturedMovie.styles';
 import { NAVIGATION, IMAGE_PATH } from '@/constants';
+import { addToList, removeFromList } from '@/actions/UserActions';
 import { fetchFeatured, TYPES } from '@/actions/FeaturedActions';
 import { TextStyles } from '@/theme';
 import { strings } from '@/localization';
 import { Button, ErrorView, Spinner } from '@/components';
+import { isMovieInList } from '@/selectors/UserSelectors';
 import { getFeatured } from '@/selectors/FeaturedSelectors';
 import { errorsSelector } from '@/selectors/ErrorSelectors';
 import { isLoadingSelector } from '@/selectors/StatusSelectors';
-import { movyIcon, addIcon, playIcon, infoIcon } from '@/assets';
+import { movyIcon, addIcon, removeIcon, playIcon, infoIcon } from '@/assets';
 
 export function FeaturedMovie() {
   const { colors } = useTheme();
@@ -21,24 +23,26 @@ export function FeaturedMovie() {
   const navigation = useNavigation();
 
   const featured = useSelector(getFeatured, shallowEqual);
-
+  const isFeaturedInList = useSelector(state =>
+    isMovieInList(state, featured.id)
+  );
   const isLoading = useSelector(state =>
     isLoadingSelector([TYPES.FEATURED], state)
   );
-
   const errors = useSelector(
     state => errorsSelector([TYPES.FEATURED], state),
     shallowEqual
   );
 
   const handleAddToList = () => {
-    navigation.navigate(NAVIGATION.myList, { movieId: featured.id }); // TODO: Add to list
+    dispatch(addToList(featured));
   };
-
+  const handleRemoveFromList = () => {
+    dispatch(removeFromList(featured));
+  };
   const handlePlay = () => {
     navigation.navigate(NAVIGATION.myList, { movieId: featured.id }); // TODO: Go to the right place
   };
-
   const handleShowDetails = () => {
     navigation.navigate(NAVIGATION.myList, { movieId: featured.id }); // TODO: Go to the right place
   };
@@ -85,12 +89,21 @@ export function FeaturedMovie() {
             {strings.components.moviePoster.movyOriginal}
           </Text>
           <View style={styles.icons}>
-            <Button
-              style={styles.button}
-              title={strings.common.myList}
-              icon={addIcon}
-              onPress={handleAddToList}
-            />
+            {!isFeaturedInList ? (
+              <Button
+                style={styles.button}
+                title={strings.common.myList}
+                icon={addIcon}
+                onPress={handleAddToList}
+              />
+            ) : (
+              <Button
+                style={styles.button}
+                title={strings.common.myList}
+                icon={removeIcon}
+                onPress={handleRemoveFromList}
+              />
+            )}
             <Button
               style={styles.button}
               title={strings.common.play}
