@@ -23,7 +23,7 @@ export function TrendingNow() {
     shallowEqual
   );
 
-  const onShowDetails = movieId => {
+  const handleShowDetails = movieId => {
     navigation.navigate(NAVIGATION.myList, { movieId: movieId }); // TODO: Add go to details
   };
 
@@ -39,10 +39,12 @@ export function TrendingNow() {
   }
 
   return (
-    <HorizontalList
-      title={strings.common.trendingNow}
-      posters={trending}
-      onPress={onShowDetails}
-    />
+    trending && (
+      <HorizontalList
+        title={strings.common.trendingNow}
+        posters={trending}
+        onPress={handleShowDetails}
+      />
+    )
   );
 }
