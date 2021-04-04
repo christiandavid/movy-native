@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Image } from 'react-native';
 
-import { homeIcon, settingsIcon, searchIcon } from '@/assets';
+import { homeIcon, settingsIcon, searchIcon, myListIcon } from '@/assets';
 import { NAVIGATION } from '@/constants';
 
 const tabIcon = {

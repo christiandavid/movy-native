@@ -17,8 +17,8 @@ export function ListEmpty() {
   const { colors } = useTheme();
 
   return (
-    <View style={[styles.container, { color: colors.text }]}>
-      <Text style={styles.listEmptyText}>
+    <View style={styles.container}>
+      <Text style={[styles.listEmptyText, { color: colors.text }]}>
         {strings.components.horizontalList.listEmpty}
       </Text>
     </View>
