@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 import { theme } from '@/theme';
 import { strings } from '@/localization';
+import { ImageFadeIn } from '@/components';
 
 const styles = StyleSheet.create({
   movie: {
@@ -37,11 +38,7 @@ const styles = StyleSheet.create({
 export function MoviePoster({ imageSrc }) {
   return (
     <View style={styles.movie}>
-      <Image
-        style={styles.movieImage}
-        source={{ uri: imageSrc }}
-        accessibilityIgnoresInvertColors={true}
-      />
+      <ImageFadeIn style={styles.movieImage} source={{ uri: imageSrc }} />
       <View style={styles.originalView}>
         <Text style={styles.originalText}>
           {strings.components.moviePoster.movyOriginal}
