@@ -1,7 +1,7 @@
 import { strings } from '@/localization';
 import { HttpClient } from '@/controllers';
 
-export class FeaturedMovieController {
+export class FeaturedController {
   static async getFeaturedMovie() {
     try {
       const {
@@ -15,7 +15,7 @@ export class FeaturedMovieController {
 
       return { ...featured, genres };
     } catch (err) {
-      throw new Error(strings.featuredMovie.invalidRequest);
+      throw new Error(strings.common.invalidRequest);
     }
   }
 

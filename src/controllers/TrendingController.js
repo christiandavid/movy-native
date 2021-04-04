@@ -10,7 +10,7 @@ export class TrendingController {
 
       return results;
     } catch (err) {
-      throw new Error(strings.featuredMovie.invalidRequest);
+      throw new Error(strings.common.invalidRequest);
     }
   }
 }

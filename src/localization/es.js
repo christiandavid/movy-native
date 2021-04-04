@@ -6,6 +6,7 @@ export const en = {
     trendingNow: 'Siendo tendencia ahora',
     play: 'Reproducir',
     info: 'Info',
+    invalidRequest: 'Algo malo sucedió y no puedo obtener la información',
   },
   home: {
     header: 'Home',
@@ -32,8 +33,5 @@ export const en = {
     moviePoster: {
       movyOriginal: 'MOVY ORIGINAL',
     },
-  },
-  featuredMovie: {
-    invalidRequest: 'Algo malo sucedió y no puedo obtener la información',
   },
 };
