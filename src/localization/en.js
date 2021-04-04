@@ -4,7 +4,6 @@ export const en = {
     connectionError: 'Connection error',
     myList: 'My List',
     trendingNow: 'Trending Now',
-    recentlyAdded: 'Recently Added',
     play: 'Play',
     info: 'Info',
   },
