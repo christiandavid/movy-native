@@ -1,12 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useTheme } from '@react-navigation/native';
-import { View, Image, Text, StyleSheet } from 'react-native';
+import {
+  View,
+  Image,
+  Text,
+  StyleSheet,
+  useWindowDimensions,
+} from 'react-native';
 import { TextStyles } from '@/theme';
 import { playIcon } from '@/assets';
 
 import { StarRating } from '@/components/StarRating';
-import { useOrientation } from '@/hooks/useOrientation';
+import { ORIENTATION } from '@/constants/orientation';
 
 const styles = StyleSheet.create({
   searchMovieCard: {
@@ -52,7 +58,9 @@ const styles = StyleSheet.create({
 
 export function SearchMovieCard({ title, image, average }) {
   const { colors } = useTheme();
-  const orientation = useOrientation();
+  const { PORTRAIT, LANDSCAPE } = ORIENTATION;
+  const { width, height } = useWindowDimensions();
+  const orientation = width < height ? PORTRAIT : LANDSCAPE;
 
   return (
     <View
@@ -70,9 +78,7 @@ export function SearchMovieCard({ title, image, average }) {
       </View>
       <View
         style={
-          orientation === 'PORTRAIT'
-            ? styles.infoPortrait
-            : styles.infoLandscape
+          orientation === PORTRAIT ? styles.infoPortrait : styles.infoLandscape
         }
       >
         <Text
@@ -87,7 +93,7 @@ export function SearchMovieCard({ title, image, average }) {
         </Text>
         <View
           style={
-            orientation === 'PORTRAIT'
+            orientation === PORTRAIT
               ? styles.infoBottomPortrait
               : styles.infoBottomLandscape
           }
