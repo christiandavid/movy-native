@@ -47,7 +47,7 @@ Button.propTypes = {
   style: PropTypes.object,
   textStyle: PropTypes.object,
   title: PropTypes.string.isRequired,
-  icon: PropTypes.string,
+  icon: PropTypes.number,
 };
 
 Button.defaultProps = {

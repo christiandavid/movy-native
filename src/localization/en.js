@@ -6,6 +6,7 @@ export const en = {
     trendingNow: 'Trending Now',
     play: 'Play',
     info: 'Info',
+    invalidRequest: "Something bad happened and I can't get the information",
   },
   home: {
     header: 'Home',
@@ -32,8 +33,5 @@ export const en = {
     moviePoster: {
       movyOriginal: 'MOVY ORIGINAL',
     },
-  },
-  featuredMovie: {
-    invalidRequest: "Something bad happened and I can't get the information",
   },
 };

@@ -67,7 +67,7 @@ HorizontalList.propTypes = {
   title: PropTypes.string.isRequired,
   posters: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string.isRequired,
+      id: PropTypes.number.isRequired,
       image: PropTypes.string,
     })
   ).isRequired,

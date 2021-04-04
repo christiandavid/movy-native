@@ -6,11 +6,11 @@ import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 
 import { styles } from '@/screens/Home/FeaturedMovie/FeaturedMovie.styles';
 import { NAVIGATION, IMAGE_PATH } from '@/constants';
-import { fetchFeaturedMovie, TYPES } from '@/actions/FeaturedMovieActions';
+import { fetchFeatured, TYPES } from '@/actions/FeaturedActions';
 import { TextStyles } from '@/theme';
 import { strings } from '@/localization';
 import { Button, ErrorView, Spinner } from '@/components';
-import { getFeaturedMovie } from '@/selectors/FeaturedMovieSelectors';
+import { getFeatured } from '@/selectors/FeaturedSelectors';
 import { errorsSelector } from '@/selectors/ErrorSelectors';
 import { isLoadingSelector } from '@/selectors/StatusSelectors';
 import { movyIcon, addIcon, playIcon, infoIcon } from '@/assets';
@@ -20,38 +20,38 @@ export function FeaturedMovie() {
   const dispatch = useDispatch();
   const navigation = useNavigation();
 
-  const featuredMovie = useSelector(getFeaturedMovie, shallowEqual);
+  const featured = useSelector(getFeatured, shallowEqual);
 
   const isLoading = useSelector(state =>
-    isLoadingSelector([TYPES.FEATURED_MOVIE], state)
+    isLoadingSelector([TYPES.FEATURED], state)
   );
 
   const errors = useSelector(
-    state => errorsSelector([TYPES.FEATURED_MOVIE], state),
+    state => errorsSelector([TYPES.FEATURED], state),
     shallowEqual
   );
 
   const handleAddToList = () => {
-    navigation.navigate(NAVIGATION.myList, { movieId: featuredMovie.id }); // TODO: Add to list
+    navigation.navigate(NAVIGATION.myList, { movieId: featured.id }); // TODO: Add to list
   };
 
   const handlePlay = () => {
-    navigation.navigate(NAVIGATION.myList, { movieId: featuredMovie.id }); // TODO: Go to the right place
+    navigation.navigate(NAVIGATION.myList, { movieId: featured.id }); // TODO: Go to the right place
   };
 
   const handleShowDetails = () => {
-    navigation.navigate(NAVIGATION.myList, { movieId: featuredMovie.id }); // TODO: Go to the right place
+    navigation.navigate(NAVIGATION.myList, { movieId: featured.id }); // TODO: Go to the right place
   };
 
   useEffect(() => {
-    dispatch(fetchFeaturedMovie());
+    dispatch(fetchFeatured());
   }, [dispatch]);
 
   if (isLoading) {
     return <Spinner />;
   }
 
-  const posterImage = { uri: `${IMAGE_PATH}${featuredMovie.posterPath}` };
+  const posterImage = { uri: `${IMAGE_PATH}${featured.posterPath}` };
 
   return (
     <>
@@ -72,7 +72,7 @@ export function FeaturedMovie() {
             accessibilityIgnoresInvertColors
           />
           <View style={styles.genres}>
-            {featuredMovie.genres.map(genre => (
+            {featured.genres.map(genre => (
               <Text
                 key={genre}
                 style={[TextStyles.text, { color: colors.text }]}
