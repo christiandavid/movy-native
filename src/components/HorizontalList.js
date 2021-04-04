@@ -1,9 +1,15 @@
 import { useTheme } from '@react-navigation/native';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { StyleSheet, View, Text, VirtualizedList } from 'react-native';
-import { strings } from '@/localization';
-import { MoviePoster } from '@/components';
+import {
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  VirtualizedList,
+} from 'react-native';
+
+import { ListEmpty, MoviePoster } from '@/components';
 
 const styles = StyleSheet.create({
   container: {
@@ -13,10 +19,6 @@ const styles = StyleSheet.create({
   list: {
     flexGrow: 1,
   },
-  listEmptyView: {
-    flex: 1,
-    alignItems: 'center',
-  },
   title: {
     fontSize: 20,
     paddingLeft: 15,
@@ -25,35 +27,36 @@ const styles = StyleSheet.create({
   },
 });
 
-const ListEmpty = () => (
-  <View style={styles.listEmptyView}>
-    <Text style={styles.listEmptyText}>
-      {strings.components.horizontalList.listEmpty}
-    </Text>
-  </View>
-);
+const getItem = (data, index) => ({
+  id: data[index].id,
+  image: data[index].image,
+});
+const getItemCount = data => data.length;
+const keyExtractor = item => item.id;
 
-export function HorizontalList({ title, posters }) {
+export function HorizontalList({ title, posters, onPress }) {
   const { colors } = useTheme();
-
-  const getItem = (data, index) => ({
-    id: data[index].id,
-    image: data[index].image,
-  });
-  const getItemCount = data => data.length;
 
   return (
     <View style={styles.container}>
       <Text style={[styles.title, { color: colors.text }]}>{title}</Text>
       <VirtualizedList
+        horizontal
         contentContainerStyle={styles.list}
         data={posters}
         initialNumToRender={5}
-        renderItem={({ item }) => <MoviePoster imageSrc={item.image} />}
-        keyExtractor={item => item.id}
+        renderItem={({ item: { id, image } }) =>
+          onPress ? (
+            <TouchableOpacity onPress={() => onPress(id)}>
+              <MoviePoster imageSrc={image} />
+            </TouchableOpacity>
+          ) : (
+            <MoviePoster imageSrc={image} />
+          )
+        }
+        keyExtractor={keyExtractor}
         getItemCount={getItemCount}
         getItem={getItem}
-        horizontal={true}
         ListEmptyComponent={ListEmpty}
       />
     </View>
@@ -64,8 +67,13 @@ HorizontalList.propTypes = {
   title: PropTypes.string.isRequired,
   posters: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string.isRequired,
+      id: PropTypes.number.isRequired,
       image: PropTypes.string,
     })
   ).isRequired,
+  onPress: PropTypes.func,
+};
+
+HorizontalList.defaultProps = {
+  onPress: null,
 };

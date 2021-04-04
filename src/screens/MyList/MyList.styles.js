@@ -5,7 +5,4 @@ export const styles = StyleSheet.create({
     flex: 1,
     paddingTop: StatusBar.currentHeight,
   },
-  lists: {
-    marginTop: 35,
-  },
 });

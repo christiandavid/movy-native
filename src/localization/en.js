@@ -4,9 +4,9 @@ export const en = {
     connectionError: 'Connection error',
     myList: 'My List',
     trendingNow: 'Trending Now',
-    recentlyAdded: 'Recently Added',
     play: 'Play',
     info: 'Info',
+    invalidRequest: "Something bad happened and I can't get the information",
   },
   home: {
     header: 'Home',

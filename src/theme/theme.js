@@ -35,4 +35,5 @@ export const theme = {
       searchMovieCard: '#171717',
     },
   },
+  posterWidth: 100,
 };
