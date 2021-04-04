@@ -1,4 +1,5 @@
 import { TYPES } from '@/actions/UserActions';
+import { IMAGE_PATH } from '@/constants';
 
 export const initialState = { user: null, list: [] };
 
@@ -14,7 +15,10 @@ export const userReducer = (state = initialState, { payload, type }) => {
         ...state,
         list: [
           ...state.list,
-          { id: payload.movie.id, posterPath: payload.movie.posterPath },
+          {
+            id: payload.movie.id,
+            image: `${IMAGE_PATH}${payload.movie.posterPath}`,
+          },
         ],
       };
     }

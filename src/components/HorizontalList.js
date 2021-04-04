@@ -31,7 +31,7 @@ const getItem = (data, index) => ({
   id: data[index].id,
   image: data[index].image,
 });
-const getItemCount = data => data?.length || 0;
+const getItemCount = data => data.length;
 const keyExtractor = item => item.id;
 
 export function HorizontalList({ title, posters, onPress }) {

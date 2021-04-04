@@ -39,12 +39,10 @@ export function TrendingNow() {
   }
 
   return (
-    trending && (
-      <HorizontalList
-        title={strings.common.trendingNow}
-        posters={trending}
-        onPress={handleShowDetails}
-      />
-    )
+    <HorizontalList
+      title={strings.common.trendingNow}
+      posters={trending}
+      onPress={handleShowDetails}
+    />
   );
 }
