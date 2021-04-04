@@ -1,13 +1,7 @@
 import { useTheme } from '@react-navigation/native';
 import PropTypes from 'prop-types';
 import React from 'react';
-import {
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-  VirtualizedList,
-} from 'react-native';
+import { StyleSheet, Text, View, VirtualizedList } from 'react-native';
 
 import { ListEmpty, MoviePoster } from '@/components';
 
@@ -45,15 +39,9 @@ export function HorizontalList({ title, posters, onPress }) {
         contentContainerStyle={styles.list}
         data={posters}
         initialNumToRender={5}
-        renderItem={({ item: { id, image } }) =>
-          onPress ? (
-            <TouchableOpacity onPress={() => onPress(id)}>
-              <MoviePoster imageSrc={image} />
-            </TouchableOpacity>
-          ) : (
-            <MoviePoster imageSrc={image} />
-          )
-        }
+        renderItem={({ item: { id, image } }) => (
+          <MoviePoster id={id} imageSrc={image} onPress={onPress} />
+        )}
         keyExtractor={keyExtractor}
         getItemCount={getItemCount}
         getItem={getItem}
@@ -75,5 +63,5 @@ HorizontalList.propTypes = {
 };
 
 HorizontalList.defaultProps = {
-  onPress: null,
+  onPress: () => {},
 };

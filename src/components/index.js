@@ -7,3 +7,4 @@ export { HorizontalList } from '@/components/HorizontalList';
 export { GridList } from '@/components/GridList';
 export { ListEmpty } from '@/components/ListEmpty';
 export { Spinner } from '@/components/Spinner';
+export { ImageFadeIn } from '@/components/ImageFadeIn';

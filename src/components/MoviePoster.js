@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, TouchableOpacity, Text, View } from 'react-native';
 
 import { theme } from '@/theme';
 import { strings } from '@/localization';
+import { ImageFadeIn } from '@/components';
 
 const styles = StyleSheet.create({
   movie: {
@@ -34,23 +35,26 @@ const styles = StyleSheet.create({
   },
 });
 
-export function MoviePoster({ imageSrc }) {
+export function MoviePoster({ id, imageSrc, onPress }) {
   return (
-    <View style={styles.movie}>
-      <Image
-        style={styles.movieImage}
-        source={{ uri: imageSrc }}
-        accessibilityIgnoresInvertColors={true}
-      />
-      <View style={styles.originalView}>
-        <Text style={styles.originalText}>
-          {strings.components.moviePoster.movyOriginal}
-        </Text>
+    <TouchableOpacity onPress={() => onPress(id)}>
+      <View style={styles.movie}>
+        <ImageFadeIn style={styles.movieImage} source={{ uri: imageSrc }} />
+        <View style={styles.originalView}>
+          <Text style={styles.originalText}>
+            {strings.components.moviePoster.movyOriginal}
+          </Text>
+        </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }
 
 MoviePoster.propTypes = {
+  id: PropTypes.number.isRequired,
   imageSrc: PropTypes.string.isRequired,
+};
+
+MoviePoster.defaultProps = {
+  onPress: () => {},
 };
