@@ -8,9 +8,9 @@ import {
   StyleSheet,
   useWindowDimensions,
 } from 'react-native';
+
 import { TextStyles } from '@/theme';
 import { playIcon } from '@/assets';
-
 import { StarRating } from '@/components/StarRating';
 import { ORIENTATION } from '@/constants/orientation';
 
@@ -102,7 +102,7 @@ export function SearchMovieCard({ title, image, average }) {
           <Image
             accessibilityIgnoresInvertColors
             source={playIcon}
-            style={styles.playIcon}
+            style={[styles.playIcon, { tintColor: colors.invertedBase }]}
           />
         </View>
       </View>
@@ -111,13 +111,13 @@ export function SearchMovieCard({ title, image, average }) {
 }
 
 SearchMovieCard.propTypes = {
-  title: PropTypes.string,
+  id: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
   image: PropTypes.string,
   average: PropTypes.number,
 };
 
 SearchMovieCard.defaultProps = {
-  title: '',
   imageContainer: '',
   average: 0,
 };

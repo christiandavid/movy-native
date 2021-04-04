@@ -8,3 +8,5 @@ export { GridList } from '@/components/GridList';
 export { ListEmpty } from '@/components/ListEmpty';
 export { Spinner } from '@/components/Spinner';
 export { ImageFadeIn } from '@/components/ImageFadeIn';
+export { SearchBar } from '@/components/SearchBar';
+export { SearchMovieCard } from '@/components/SearchMovieCard';
