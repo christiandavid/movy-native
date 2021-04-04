@@ -14,6 +14,8 @@ export const theme = {
       inactiveTab: '#757575',
       base: '#F0F0F0',
       invertedBase: '#000000',
+      searchBar: '#b1b1b1',
+      searchMovieCard: '#b1b1b1',
     },
   },
   dark: {
@@ -29,6 +31,8 @@ export const theme = {
       inactiveTab: '#FFFFFF',
       base: '#000000',
       invertedBase: '#ffffff',
+      searchBar: '#171717',
+      searchMovieCard: '#171717',
     },
   },
   posterWidth: 100,
