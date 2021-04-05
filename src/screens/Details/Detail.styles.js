@@ -20,7 +20,8 @@ export const styles = StyleSheet.create({
   },
   button: {
     position: 'absolute',
-    right: 0,
+    right: 5,
+    top: -40,
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'center',

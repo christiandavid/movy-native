@@ -58,28 +58,22 @@ export function Details() {
           source={{ uri: details.posterPath }}
         />
         <View style={styles.info}>
+          {!isInList ? (
+            <Button
+              icon={addIcon}
+              style={[styles.button, { backgroundColor: colors.invertedBase }]}
+              inverted
+              onPress={handleAddToList}
+            />
+          ) : (
+            <Button
+              icon={removeIcon}
+              style={[styles.button, { backgroundColor: colors.invertedBase }]}
+              inverted
+              onPress={handleRemoveFromList}
+            />
+          )}
           <View style={styles.details}>
-            {!isInList ? (
-              <Button
-                icon={addIcon}
-                style={[
-                  styles.button,
-                  { backgroundColor: colors.invertedBase },
-                ]}
-                inverted
-                onPress={handleAddToList}
-              />
-            ) : (
-              <Button
-                icon={removeIcon}
-                style={[
-                  styles.button,
-                  { backgroundColor: colors.invertedBase },
-                ]}
-                inverted
-                onPress={handleRemoveFromList}
-              />
-            )}
             {details.genres.map(({ name }) => (
               <Text style={[TextStyles.text, styles.genreTag]}>{name}</Text>
             ))}
