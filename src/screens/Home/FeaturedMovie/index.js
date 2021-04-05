@@ -55,7 +55,7 @@ export function FeaturedMovie() {
     return <Spinner />;
   }
 
-  const posterImage = { uri: `${IMAGE_PATH}${featured.posterPath}` };
+  const posterImage = { uri: `${IMAGE_PATH}/${featured.posterPath}` };
 
   return (
     <>

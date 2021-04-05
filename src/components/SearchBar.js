@@ -1,12 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { View, Image, TextInput, StyleSheet } from 'react-native';
-import { searchIconSm, micIcon } from '@/assets';
 import { useTheme } from '@react-navigation/native';
-import { color } from 'react-native-reanimated';
+
+import { searchIconSm } from '@/assets';
+import { strings } from '@/localization';
 
 const styles = StyleSheet.create({
   searchBar: {
-    flex: 1,
     flexDirection: 'row',
     height: 60,
     alignItems: 'center',
@@ -14,35 +15,39 @@ const styles = StyleSheet.create({
   searchBarInput: {
     flex: 10,
     height: 60,
-    color: 'white',
     fontSize: 18,
-  },
-  micIcon: {
-    marginHorizontal: 10,
   },
   searchIcon: {
     marginHorizontal: 10,
   },
 });
 
-export function SearchBar() {
+export function SearchBar({ text, onChangeText }) {
   const { colors } = useTheme();
+
   return (
     <View style={[styles.searchBar, { backgroundColor: colors.searchBar }]}>
       <Image
-        style={styles.searchIcon}
+        style={[styles.searchIcon, { tintColor: colors.invertedBase }]}
         source={searchIconSm}
         accessibilityIgnoresInvertColors
       />
       <TextInput
-        style={styles.searchBarInput}
-        placeholder="Search for a movie that you love…"
-      />
-      <Image
-        style={styles.micIcon}
-        source={micIcon}
-        accessibilityIgnoresInvertColors
+        style={[styles.searchBarInput, colors.text]}
+        placeholder={strings.search.placeholder}
+        onChangeText={onChangeText}
+        value={text}
       />
     </View>
   );
 }
+
+SearchBar.propTypes = {
+  text: PropTypes.string,
+  onChangeText: PropTypes.func,
+};
+
+SearchBar.defaultProps = {
+  text: '',
+  onChangeText: () => {},
+};

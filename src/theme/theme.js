@@ -14,8 +14,8 @@ export const theme = {
       inactiveTab: '#757575',
       base: '#F0F0F0',
       invertedBase: '#000000',
-      searchBar: '#b1b1b1',
-      searchMovieCard: '#b1b1b1',
+      searchBar: '#fff',
+      searchMovieCard: '#fff',
     },
   },
   dark: {

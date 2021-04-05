@@ -26,9 +26,13 @@ export const en = {
     logout: 'Logout',
     message: 'This screen has the iOS native large header.',
   },
+  search: {
+    title: 'Popular Searches',
+    placeholder: 'Search for a movie that you love...',
+  },
   components: {
     horizontalList: {
-      listEmpty: 'This list is empty',
+      listEmpty: 'Nothing to show',
     },
     moviePoster: {
       movyOriginal: 'MOVY ORIGINAL',

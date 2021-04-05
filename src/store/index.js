@@ -7,7 +7,7 @@ import { rootReducer } from '@/reducers';
 const persistConfig = {
   key: 'root',
   storage,
-  blacklist: ['error', 'status'],
+  blacklist: ['error', 'status', 'search'],
 };
 
 export const store = createStore(

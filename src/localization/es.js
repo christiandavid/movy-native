@@ -26,9 +26,13 @@ export const en = {
     logout: 'Logout',
     message: 'This screen has the iOS native large header.',
   },
+  search: {
+    title: 'Búsquedas populares',
+    placeholder: 'Busca una película que te guste...',
+  },
   components: {
     horizontalList: {
-      listEmpty: 'Esta lista está vacía',
+      listEmpty: 'Nada que mostrar',
     },
     moviePoster: {
       movyOriginal: 'MOVY ORIGINAL',

@@ -17,7 +17,7 @@ export const userReducer = (state = initialState, { payload, type }) => {
           ...state.list,
           {
             id: payload.movie.id,
-            image: `${IMAGE_PATH}${payload.movie.posterPath}`,
+            image: `${IMAGE_PATH}/${payload.movie.posterPath}`,
           },
         ],
       };
@@ -28,7 +28,7 @@ export const userReducer = (state = initialState, { payload, type }) => {
         list: state.list.filter(movie => movie.id !== payload.movie.id),
       };
     case TYPES.CLEAR_STORE:
-      return {};
+      return { ...initialState };
     default:
       return state;
   }
