@@ -1,5 +1,4 @@
 import { TYPES } from '@/actions/DetailsActions';
-import { IMAGE_PATH } from '@/constants';
 
 export const initialState = {
   id: null,
@@ -20,9 +19,7 @@ export const detailsReducer = (state = initialState, { payload, type }) => {
         id: payload.details.id,
         title: payload.details.title,
         genres: payload.details.genres,
-        posterPath: payload.details.posterPath
-          ? `${IMAGE_PATH}/${payload.details.posterPath}`
-          : null,
+        posterPath: payload.details.posterPath,
         video: payload.details.video,
         overview: payload.details.overview,
         voteAverage: payload.details.voteAverage,
