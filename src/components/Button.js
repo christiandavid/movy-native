@@ -21,6 +21,7 @@ export function Button({
   textStyle,
   icon,
   title,
+  inverted,
   ...rest
 }) {
   const { colors } = useTheme();
@@ -33,7 +34,11 @@ export function Button({
         <Image
           source={icon}
           accessibilityIgnoresInvertColors
-          style={{ tintColor: colors.invertedBase }}
+          style={
+            inverted
+              ? { tintColor: colors.base }
+              : { tintColor: colors.invertedBase }
+          }
         />
       )}
       <Text style={[{ color: colors.text }, TextStyles.label, textStyle]}>

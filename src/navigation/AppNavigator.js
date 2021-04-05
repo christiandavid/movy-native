@@ -7,6 +7,7 @@ import { HomeNavigator } from '@/navigation/HomeNavigator';
 import { MyListNavigator } from '@/navigation/MyListNavigator';
 import { ProfileNavigator } from '@/navigation/ProfileNavigator';
 import { SearchNavigator } from '@/navigation/SearchNavigator';
+import { DetailsNavigator } from '@/navigation/DetailsNavigator';
 
 const Tab = createBottomTabNavigator();
 
@@ -30,6 +31,7 @@ export function AppNavigator() {
       <Tab.Screen name={NAVIGATION.search} component={SearchNavigator} />
       <Tab.Screen name={NAVIGATION.myList} component={MyListNavigator} />
       <Tab.Screen name={NAVIGATION.profile} component={ProfileNavigator} />
+      <Tab.Screen name={NAVIGATION.details} component={DetailsNavigator} />
     </Tab.Navigator>
   );
 }
