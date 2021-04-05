@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback, useRef } from 'react';
 import { useTheme, useRoute } from '@react-navigation/native';
 import { View, Text, SafeAreaView, ScrollView } from 'react-native';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
@@ -24,6 +24,7 @@ export function Details() {
     params: { movieId, playVideo = false },
   } = useRoute();
   const [playing, setPlaying] = useState(playVideo);
+  const scrollviewRef = useRef();
 
   const details = useSelector(getDetails, shallowEqual);
   const isInList = useSelector(state => isMovieInList(state, movieId));
@@ -56,6 +57,12 @@ export function Details() {
     dispatch(fetchDetails(movieId));
   }, [movieId, dispatch]);
 
+  useEffect(() => {
+    if (playVideo && details.video?.id) {
+      scrollviewRef.current.scrollToEnd({ animated: true });
+    }
+  }, [details, playVideo]);
+
   if (isLoading) {
     return <Spinner />;
   }
@@ -65,26 +72,15 @@ export function Details() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView>
-        {details.video?.id ? (
-          <View>
-            <YoutubePlayer
-              height={300}
-              play={playing}
-              videoId={details.video.key}
-              onChangeState={onStateChange}
-            />
-          </View>
-        ) : (
-          <ImageFadeIn
-            style={styles.image}
-            source={{
-              uri: details.posterPath
-                ? `${IMAGE_PATH}/${details.posterPath}`
-                : null,
-            }}
-          />
-        )}
+      <ScrollView ref={scrollviewRef}>
+        <ImageFadeIn
+          style={styles.image}
+          source={{
+            uri: details.posterPath
+              ? `${IMAGE_PATH}/${details.posterPath}`
+              : null,
+          }}
+        />
         <View style={styles.info}>
           {!isInList ? (
             <Button
@@ -125,6 +121,16 @@ export function Details() {
             {details.overview}
           </Text>
         </View>
+        {details.video?.id && (
+          <View>
+            <YoutubePlayer
+              height={300}
+              play={playing}
+              videoId={details.video.key}
+              onChangeState={onStateChange}
+            />
+          </View>
+        )}
       </ScrollView>
     </SafeAreaView>
   );
