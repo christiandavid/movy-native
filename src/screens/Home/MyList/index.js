@@ -25,8 +25,10 @@ export function MyList() {
   };
 
   useEffect(() => {
-    LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
-  });
+    if (userList.length) {
+      LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
+    }
+  }, [userList]);
 
   return (
     !!userList.length && (
