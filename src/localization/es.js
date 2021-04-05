@@ -37,5 +37,8 @@ export const en = {
     moviePoster: {
       movyOriginal: 'MOVY ORIGINAL',
     },
+    searchBar: {
+      notConnected: 'Sin conexión a Internet',
+    },
   },
 };
