@@ -24,7 +24,7 @@ export const en = {
   profile: {
     header: 'Profile',
     logout: 'Logout',
-    message: 'This screen has the iOS native large header.',
+    message: 'Hi, ',
   },
   search: {
     title: 'Popular Searches',
