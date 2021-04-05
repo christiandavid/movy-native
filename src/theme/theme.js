@@ -16,6 +16,7 @@ export const theme = {
       invertedBase: '#000000',
       searchBar: '#fff',
       searchMovieCard: '#fff',
+      logo: '#0578FF',
     },
   },
   dark: {
@@ -33,6 +34,7 @@ export const theme = {
       invertedBase: '#ffffff',
       searchBar: '#171717',
       searchMovieCard: '#171717',
+      logo: '#FFFFFF',
     },
   },
   posterWidth: 100,
