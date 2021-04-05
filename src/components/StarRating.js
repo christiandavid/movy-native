@@ -25,6 +25,7 @@ export function StarRating({ average }) {
     <View style={styles.starRating}>
       {[...Array(5).keys()].map((_, index) => (
         <Image
+          key={index}
           accessibilityIgnoresInvertColors
           source={startIcon}
           style={index + 1 <= rating ? styles.starOn : styles.starOff}

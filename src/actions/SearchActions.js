@@ -5,7 +5,7 @@ export const TYPES = {
   SEARCH_REQUEST: 'SEARCH_REQUEST',
   SEARCH_ERROR: 'SEARCH_ERROR',
   SEARCH_SUCCESS: 'SEARCH_SUCCESS',
-  CLEAR_STORE: 'CLEAR_STORE',
+  CLEAR_SEARCH: 'CLEAR_SEARCH',
 };
 
 const searchRequest = () => ({
@@ -24,7 +24,7 @@ const searchSuccess = ({ results, page, totalPages }) => ({
 });
 
 const clearStore = () => ({
-  type: TYPES.CLEAR_STORE,
+  type: TYPES.CLEAR_SEARCH,
   payload: null,
 });
 

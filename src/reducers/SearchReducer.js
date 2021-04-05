@@ -15,7 +15,7 @@ export const searchReducer = (state = initialState, { payload, type }) => {
         page: payload.page,
         totalPages: payload.totalPages,
       };
-    case TYPES.CLEAR_STORE:
+    case TYPES.CLEAR_SEARCH:
       return { ...initialState };
     default:
       return state;
