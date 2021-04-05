@@ -6,18 +6,19 @@ export const styles = StyleSheet.create({
   },
   image: {
     width: '100%',
-    height: '50%',
+    height: 500,
   },
   info: {
     paddingHorizontal: 20,
   },
-  genres: {
+  details: {
     display: 'flex',
     flexDirection: 'row',
+    flexWrap: 'wrap',
     alignItems: 'flex-end',
     marginVertical: 20,
   },
-  addButton: {
+  button: {
     position: 'absolute',
     right: 0,
     display: 'flex',
@@ -30,6 +31,7 @@ export const styles = StyleSheet.create({
     borderColor: 'white',
     borderRadius: 50,
     backgroundColor: 'white',
+    zIndex: 2,
   },
   genreTag: {
     color: 'black',
@@ -40,6 +42,7 @@ export const styles = StyleSheet.create({
     overflow: 'hidden',
     paddingHorizontal: 15,
     marginRight: 5,
+    marginBottom: 10,
   },
   titleAndYear: {
     display: 'flex',

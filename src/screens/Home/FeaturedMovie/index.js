@@ -44,7 +44,7 @@ export function FeaturedMovie() {
     navigation.navigate(NAVIGATION.myList, { movieId: featured.id }); // TODO: Go to the right place
   };
   const handleShowDetails = () => {
-    navigation.navigate(NAVIGATION.myList, { movieId: featured.id }); // TODO: Go to the right place
+    navigation.navigate(NAVIGATION.details, { movieId: featured.id });
   };
 
   useEffect(() => {
