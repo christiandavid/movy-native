@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useTheme, useRoute } from '@react-navigation/native';
 import { View, Text, SafeAreaView, ScrollView } from 'react-native';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
+import YoutubePlayer from 'react-native-youtube-iframe';
 
 import { IMAGE_PATH } from '@/constants';
 import { TextStyles } from '@/theme';
@@ -20,8 +21,9 @@ export function Details() {
   const { colors } = useTheme();
   const dispatch = useDispatch();
   const {
-    params: { movieId },
+    params: { movieId, playVideo = false },
   } = useRoute();
+  const [playing, setPlaying] = useState(playVideo);
 
   const details = useSelector(getDetails, shallowEqual);
   const isInList = useSelector(state => isMovieInList(state, movieId));
@@ -44,6 +46,12 @@ export function Details() {
     dispatch(removeFromList({ id }));
   };
 
+  const onStateChange = useCallback(state => {
+    if (state === 'ended') {
+      setPlaying(false);
+    }
+  }, []);
+
   useEffect(() => {
     dispatch(fetchDetails(movieId));
   }, [movieId, dispatch]);
@@ -58,14 +66,25 @@ export function Details() {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
-        <ImageFadeIn
-          style={styles.image}
-          source={{
-            uri: details.posterPath
-              ? `${IMAGE_PATH}/${details.posterPath}`
-              : null,
-          }}
-        />
+        {details.video?.id ? (
+          <View>
+            <YoutubePlayer
+              height={300}
+              play={playing}
+              videoId={details.video.key}
+              onChangeState={onStateChange}
+            />
+          </View>
+        ) : (
+          <ImageFadeIn
+            style={styles.image}
+            source={{
+              uri: details.posterPath
+                ? `${IMAGE_PATH}/${details.posterPath}`
+                : null,
+            }}
+          />
+        )}
         <View style={styles.info}>
           {!isInList ? (
             <Button
@@ -84,7 +103,9 @@ export function Details() {
           )}
           <View style={styles.details}>
             {details.genres.map(({ name }) => (
-              <Text style={[TextStyles.text, styles.genreTag]}>{name}</Text>
+              <Text key={name} style={[TextStyles.text, styles.genreTag]}>
+                {name}
+              </Text>
             ))}
           </View>
           <View style={styles.titleAndYear}>

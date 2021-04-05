@@ -49,14 +49,15 @@ export function Button({
 }
 
 Button.propTypes = {
-  style: PropTypes.object,
+  style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   textStyle: PropTypes.object,
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   icon: PropTypes.number,
 };
 
 Button.defaultProps = {
   style: null,
   textStyle: null,
+  title: null,
   icon: null,
 };
