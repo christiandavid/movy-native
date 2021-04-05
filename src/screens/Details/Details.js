@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import { useTheme, useRoute } from '@react-navigation/native';
-import { Image, View, Text, SafeAreaView, ScrollView } from 'react-native';
+import { View, Text, SafeAreaView, ScrollView } from 'react-native';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 
+import { IMAGE_PATH } from '@/constants';
 import { TextStyles } from '@/theme';
 import { StarRating } from '@/components/StarRating';
 import { addIcon, removeIcon } from '@/assets';
@@ -33,10 +34,14 @@ export function Details() {
   );
 
   const handleAddToList = () => {
-    dispatch(addToList(details));
+    const { id, posterPath } = details;
+    dispatch(
+      addToList({ id, posterPath: posterPath && posterPath.substring(1) })
+    );
   };
   const handleRemoveFromList = () => {
-    dispatch(removeFromList(details));
+    const { id } = details;
+    dispatch(removeFromList({ id }));
   };
 
   useEffect(() => {
@@ -55,7 +60,11 @@ export function Details() {
       <ScrollView>
         <ImageFadeIn
           style={styles.image}
-          source={{ uri: details.posterPath }}
+          source={{
+            uri: details.posterPath
+              ? `${IMAGE_PATH}/${details.posterPath}`
+              : null,
+          }}
         />
         <View style={styles.info}>
           <View style={styles.details}>
