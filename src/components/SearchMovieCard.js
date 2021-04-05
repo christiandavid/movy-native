@@ -6,6 +6,7 @@ import {
   Image,
   Text,
   StyleSheet,
+  TouchableOpacity,
   useWindowDimensions,
 } from 'react-native';
 
@@ -24,6 +25,7 @@ const styles = StyleSheet.create({
   },
   imageContainer: {
     flex: 1,
+    height: 100,
   },
   infoPortrait: {
     flex: 1,
@@ -56,57 +58,60 @@ const styles = StyleSheet.create({
   },
 });
 
-export function SearchMovieCard({ title, image, average }) {
+export function SearchMovieCard({ id, title, image, average, onPress }) {
   const { colors } = useTheme();
   const { PORTRAIT, LANDSCAPE } = ORIENTATION;
   const { width, height } = useWindowDimensions();
   const orientation = width < height ? PORTRAIT : LANDSCAPE;
 
   return (
-    <View
-      style={[
-        styles.searchMovieCard,
-        { backgroundColor: colors.searchMovieCard },
-      ]}
-    >
-      <View style={styles.imageContainer}>
+    <TouchableOpacity onPress={() => onPress(id)}>
+      <View
+        style={[
+          styles.searchMovieCard,
+          { backgroundColor: colors.searchMovieCard },
+        ]}
+      >
         <Image
-          source={image}
-          resizeMode="contain"
+          style={styles.imageContainer}
+          source={{ uri: image }}
+          resizeMode="center"
           accessibilityIgnoresInvertColors
         />
-      </View>
-      <View
-        style={
-          orientation === PORTRAIT ? styles.infoPortrait : styles.infoLandscape
-        }
-      >
-        <Text
-          style={[
-            TextStyles.text,
-            {
-              color: colors.text,
-            },
-          ]}
-        >
-          {title}
-        </Text>
         <View
           style={
             orientation === PORTRAIT
-              ? styles.infoBottomPortrait
-              : styles.infoBottomLandscape
+              ? styles.infoPortrait
+              : styles.infoLandscape
           }
         >
-          <StarRating average={average} />
-          <Image
-            accessibilityIgnoresInvertColors
-            source={playIcon}
-            style={[styles.playIcon, { tintColor: colors.invertedBase }]}
-          />
+          <Text
+            style={[
+              TextStyles.text,
+              {
+                color: colors.text,
+              },
+            ]}
+          >
+            {title}
+          </Text>
+          <View
+            style={
+              orientation === PORTRAIT
+                ? styles.infoBottomPortrait
+                : styles.infoBottomLandscape
+            }
+          >
+            <StarRating average={average} />
+            <Image
+              accessibilityIgnoresInvertColors
+              source={playIcon}
+              style={[styles.playIcon, { tintColor: colors.invertedBase }]}
+            />
+          </View>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }
 
@@ -115,9 +120,11 @@ SearchMovieCard.propTypes = {
   title: PropTypes.string.isRequired,
   image: PropTypes.string,
   average: PropTypes.number,
+  onPress: PropTypes.func,
 };
 
 SearchMovieCard.defaultProps = {
-  imageContainer: '',
+  image: '',
   average: 0,
+  onPress: () => {},
 };

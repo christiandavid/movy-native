@@ -32,7 +32,7 @@ export const en = {
   },
   components: {
     horizontalList: {
-      listEmpty: 'This list is empty',
+      listEmpty: 'Nothing to show',
     },
     moviePoster: {
       movyOriginal: 'MOVY ORIGINAL',

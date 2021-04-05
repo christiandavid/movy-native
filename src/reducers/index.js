@@ -4,6 +4,7 @@ import { errorReducer } from '@/reducers/ErrorReducer';
 import { statusReducer } from '@/reducers/StatusReducer';
 import { userReducer } from '@/reducers/UserReducer';
 import { featuredReducer } from '@/reducers/FeaturedReducer';
+import { searchReducer } from '@/reducers/SearchReducer';
 import { trendingReducer } from '@/reducers/TrendingReducer';
 
 export const rootReducer = combineReducers({
@@ -12,4 +13,5 @@ export const rootReducer = combineReducers({
   user: userReducer,
   featured: featuredReducer,
   trending: trendingReducer,
+  search: searchReducer,
 });

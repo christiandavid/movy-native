@@ -9,7 +9,7 @@ export const trendingReducer = (state = initialState, { payload, type }) => {
       return payload.trending.map(({ id, title, poster_path: image }) => ({
         id,
         title,
-        image: `${IMAGE_PATH}${image}`,
+        image: `${IMAGE_PATH}/${image}`,
       }));
     }
     case TYPES.CLEAR_STORE:

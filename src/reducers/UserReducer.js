@@ -17,7 +17,7 @@ export const userReducer = (state = initialState, { payload, type }) => {
           ...state.list,
           {
             id: payload.movie.id,
-            image: `${IMAGE_PATH}${payload.movie.posterPath}`,
+            image: `${IMAGE_PATH}/${payload.movie.posterPath}`,
           },
         ],
       };

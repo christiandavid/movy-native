@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { View, Image, TextInput, StyleSheet } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 
@@ -14,7 +15,6 @@ const styles = StyleSheet.create({
   searchBarInput: {
     flex: 10,
     height: 60,
-    color: 'white',
     fontSize: 18,
   },
   searchIcon: {
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export function SearchBar() {
+export function SearchBar({ text, onChangeText }) {
   const { colors } = useTheme();
 
   return (
@@ -33,9 +33,21 @@ export function SearchBar() {
         accessibilityIgnoresInvertColors
       />
       <TextInput
-        style={styles.searchBarInput}
+        style={[styles.searchBarInput, colors.text]}
         placeholder={strings.search.placeholder}
+        onChangeText={onChangeText}
+        value={text}
       />
     </View>
   );
 }
+
+SearchBar.propTypes = {
+  text: PropTypes.string,
+  onChangeText: PropTypes.func,
+};
+
+SearchBar.defaultProps = {
+  text: '',
+  onChangeText: () => {},
+};
