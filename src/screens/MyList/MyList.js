@@ -13,7 +13,7 @@ export function MyList() {
   const userList = useSelector(getList, shallowEqual);
 
   const handleShowDetails = movieId => {
-    console.log('🚀 ~ movieId', movieId);
+    navigation.navigate(NAVIGATION.details, { movieId });
   };
 
   return (

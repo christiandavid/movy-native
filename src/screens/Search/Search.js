@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useTheme } from '@react-navigation/native';
+import { useTheme, useNavigation } from '@react-navigation/native';
 import { Text, SafeAreaView, VirtualizedList } from 'react-native';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 
-import { IMAGE_PATH } from '@/constants';
+import { IMAGE_PATH, NAVIGATION } from '@/constants';
 import { TextStyles } from '@/theme';
 import { styles } from '@/screens/Search/Search.styles';
 import { search, cleanResults, TYPES } from '@/actions/SearchActions';
@@ -25,6 +25,7 @@ const keyExtractor = item => `${item.id}`;
 export function Search() {
   const { colors } = useTheme();
   const dispatch = useDispatch();
+  const navigation = useNavigation();
   const virtualizedListRef = useRef();
 
   const [text, onChangeText] = useState('');
@@ -53,7 +54,7 @@ export function Search() {
   };
 
   const handleShowDetails = movieId => {
-    console.log('🚀 ~ movieId', movieId);
+    navigation.navigate(NAVIGATION.details, { movieId });
   };
 
   const renderItem = ({ item: { id, title, average, image } }) => (

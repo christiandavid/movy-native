@@ -41,10 +41,13 @@ export function FeaturedMovie() {
     dispatch(removeFromList(featured));
   };
   const handlePlay = () => {
-    navigation.navigate(NAVIGATION.myList, { movieId: featured.id }); // TODO: Go to the right place
+    navigation.navigate(NAVIGATION.details, {
+      movieId: featured.id,
+      playVideo: true,
+    });
   };
   const handleShowDetails = () => {
-    navigation.navigate(NAVIGATION.myList, { movieId: featured.id }); // TODO: Go to the right place
+    navigation.navigate(NAVIGATION.details, { movieId: featured.id });
   };
 
   useEffect(() => {

@@ -21,7 +21,7 @@ export function MyList() {
   const userList = useSelector(getList, shallowEqual);
 
   const handleShowDetails = movieId => {
-    navigation.navigate(NAVIGATION.myList, { movieId: movieId }); // TODO: Add go to details
+    navigation.navigate(NAVIGATION.details, { movieId });
   };
 
   useEffect(() => {
