@@ -42,7 +42,7 @@ export function SearchBar({ text, onChangeText }) {
             accessibilityIgnoresInvertColors
           />
           <TextInput
-            style={[styles.searchBarInput, colors.text]}
+            style={[styles.searchBarInput, { color: colors.text }]}
             placeholder={strings.search.placeholder}
             onChangeText={onChangeText}
             value={text}
