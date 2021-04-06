@@ -17,7 +17,7 @@ From the home tab we can see a list of trending movies and by clicking on it see
 From the my list tab we can see all the movies that we have marked as favorites. see details and watch the trailer.
 
 #### Search
-From the search tab we can search among the most recognized movies
+From the search tab we can search among the most recognized movies, the search includes pagination.
 
 ![search3](https://user-images.githubusercontent.com/65427911/113658075-f66a7500-9664-11eb-9a03-80db2c1250da.gif)
 
