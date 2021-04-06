@@ -26,7 +26,8 @@ exports[`Profile should match the snapshot 1`] = `
       ]
     }
   >
-    This screen has the iOS native large header.
+    Hi, 
+    Tester
   </Text>
   <View
     accessible={true}

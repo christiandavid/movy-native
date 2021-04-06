@@ -2,6 +2,7 @@ import { useTheme } from '@react-navigation/native';
 import React, { useState } from 'react';
 import { View, Text, Image } from 'react-native';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
+
 import { login, TYPES } from '@/actions/UserActions';
 import { Button, ErrorView, TextField } from '@/components';
 import { strings } from '@/localization';
@@ -10,7 +11,6 @@ import { errorsSelector } from '@/selectors/ErrorSelectors';
 import { isLoadingSelector } from '@/selectors/StatusSelectors';
 import { TextStyles } from '@/theme';
 import { movyIcon } from '@/assets';
-import { color } from 'react-native-reanimated';
 
 export function Login() {
   const { colors } = useTheme();

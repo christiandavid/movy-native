@@ -4,35 +4,64 @@ exports[`Login should match the snapshot 1`] = `
 <View
   style={
     Object {
-      "alignItems": "center",
       "flex": 1,
       "justifyContent": "center",
-      "paddingHorizontal": 40,
+      "padding": 40,
     }
   }
 >
   <View
     style={
-      Array [
+      Object {
+        "alignItems": "center",
+        "display": "flex",
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+      }
+    }
+  >
+    <Image
+      accessibilityIgnoresInvertColors={true}
+      source={
         Object {
-          "borderRadius": 5,
-          "padding": 20,
-          "width": "100%",
-        },
-        Object {
-          "elevation": 5,
-          "shadowColor": "#000000",
-          "shadowOffset": Object {
-            "height": 2,
-            "width": 0,
+          "testUri": "../../../src/assets/movy_logo/movy_logo.png",
+        }
+      }
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "display": "flex",
+            "flexDirection": "row",
+            "justifyContent": "space-between",
           },
-          "shadowOpacity": 0.25,
-          "shadowRadius": 3.84,
-        },
-        Object {
-          "backgroundColor": "rgb(0, 122, 255)",
-        },
-      ]
+          Object {
+            "tintColor": undefined,
+          },
+        ]
+      }
+    />
+    <Text
+      style={
+        Array [
+          Object {
+            "fontSize": 18,
+            "fontWeight": "700",
+          },
+          Object {
+            "color": "rgb(28, 28, 30)",
+          },
+        ]
+      }
+    >
+      Welcome
+    </Text>
+  </View>
+  <View
+    style={
+      Object {
+        "marginVertical": 20,
+      }
     }
   >
     <TextInput
@@ -57,7 +86,9 @@ exports[`Login should match the snapshot 1`] = `
             "marginVertical": 15,
             "paddingVertical": 5,
           },
-          null,
+          Object {
+            "borderColor": undefined,
+          },
         ]
       }
       underlineColorAndroid="transparent"
@@ -86,7 +117,9 @@ exports[`Login should match the snapshot 1`] = `
             "marginVertical": 15,
             "paddingVertical": 5,
           },
-          null,
+          Object {
+            "borderColor": undefined,
+          },
         ]
       }
       textContentType="password"
@@ -106,10 +139,10 @@ exports[`Login should match the snapshot 1`] = `
       style={
         Object {
           "alignItems": "center",
-          "borderColor": "rgb(216, 216, 216)",
-          "borderRadius": 5,
-          "borderWidth": 1,
-          "justifyContent": "center",
+          "backgroundColor": "rgb(0, 122, 255)",
+          "borderRadius": 10,
+          "color": "white",
+          "display": "flex",
           "marginTop": 20,
           "opacity": 1,
           "padding": 10,
