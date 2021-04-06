@@ -22,7 +22,6 @@
     "@react-navigation/bottom-tabs": "^5.11.8",
     "@react-navigation/native": "^5.9.3",
     "axios": "^0.21.1",
-    "axios-mock-adapter": "^1.19.0",
     "prop-types": "^15.7.2",
     "react": "17.0.1",
     "react-native": "0.64.0",

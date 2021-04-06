@@ -22,6 +22,9 @@ jest.mock('react-native-config', () => ({
 }));
 // Silence the warning: Animated: `useNativeDriver` is not supported
 jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper');
+jest.mock('react-native-reanimated', () =>
+  require('react-native-reanimated/mock')
+);
 jest.mock('@react-native-community/netinfo', () => mockRNCNetInfo);
 jest.mock('@react-navigation/native', () => {
   return {

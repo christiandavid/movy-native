@@ -1,0 +1,172 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login should match the snapshot 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+      "justifyContent": "center",
+      "padding": 40,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "display": "flex",
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+      }
+    }
+  >
+    <Image
+      accessibilityIgnoresInvertColors={true}
+      source={
+        Object {
+          "testUri": "../../../src/assets/movy_logo/movy_logo.png",
+        }
+      }
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "display": "flex",
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+          },
+          Object {
+            "tintColor": undefined,
+          },
+        ]
+      }
+    />
+    <Text
+      style={
+        Array [
+          Object {
+            "fontSize": 18,
+            "fontWeight": "700",
+          },
+          Object {
+            "color": "rgb(28, 28, 30)",
+          },
+        ]
+      }
+    >
+      Welcome
+    </Text>
+  </View>
+  <View
+    style={
+      Object {
+        "marginVertical": 20,
+      }
+    }
+  >
+    <TextInput
+      accessibilityHint="Enter your username"
+      accessibilityLabel="Username"
+      allowFontScaling={true}
+      autoCapitalize="none"
+      onChangeText={[Function]}
+      placeholder="Username"
+      rejectResponderTermination={true}
+      style={
+        Array [
+          Object {
+            "color": "rgb(28, 28, 30)",
+          },
+          Object {
+            "fontSize": 16,
+            "fontWeight": "400",
+          },
+          Object {
+            "borderBottomWidth": 0.5,
+            "marginVertical": 15,
+            "paddingVertical": 5,
+          },
+          Object {
+            "borderColor": undefined,
+          },
+        ]
+      }
+      underlineColorAndroid="transparent"
+      value=""
+    />
+    <TextInput
+      accessibilityHint="Enter your password"
+      accessibilityLabel="Password"
+      allowFontScaling={true}
+      autoCapitalize="none"
+      onChangeText={[Function]}
+      placeholder="Password"
+      rejectResponderTermination={true}
+      secureTextEntry={true}
+      style={
+        Array [
+          Object {
+            "color": "rgb(28, 28, 30)",
+          },
+          Object {
+            "fontSize": 16,
+            "fontWeight": "400",
+          },
+          Object {
+            "borderBottomWidth": 0.5,
+            "marginVertical": 15,
+            "paddingVertical": 5,
+          },
+          Object {
+            "borderColor": undefined,
+          },
+        ]
+      }
+      textContentType="password"
+      underlineColorAndroid="transparent"
+      value=""
+    />
+    <View
+      accessible={true}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "rgb(0, 122, 255)",
+          "borderRadius": 10,
+          "color": "white",
+          "display": "flex",
+          "marginTop": 20,
+          "opacity": 1,
+          "padding": 10,
+          "width": "100%",
+        }
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "rgb(28, 28, 30)",
+            },
+            Object {
+              "fontSize": 16,
+              "fontWeight": "700",
+            },
+            null,
+          ]
+        }
+      >
+        Login
+      </Text>
+    </View>
+  </View>
+</View>
+`;
